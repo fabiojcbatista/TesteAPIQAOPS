@@ -4,9 +4,18 @@
 package TesteAPIQAOPS;
 
 import org.junit.Test;
+<<<<<<< HEAD
 
 public class AppTest {
     @Test
     public void appHasAGreeting() {
+=======
+import static org.junit.Assert.*;
+
+public class AppTest {
+    @Test public void appHasAGreeting() {
+        App classUnderTest = new App();
+        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+>>>>>>> 63ad2fd7403d8bb37738930267981d27075bc3b9
     }
 }

@@ -1,4 +1,3 @@
-
 app_path=$0
 
 # Need this for daisy-chained symlinks.
