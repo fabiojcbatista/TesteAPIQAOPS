@@ -7,10 +7,12 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.13.2'
-    implementation 'com.google.guava:guava:30.1.1-jre'
+    testImplementation 'junit:junit:4.+'
+    testImplementation 'io.rest-assured:rest-assured:4.+'
 }
 
 application {
     mainClass = 'TesteAPIQAOPS.App'
 }
+
+task teste(type:Test){}
