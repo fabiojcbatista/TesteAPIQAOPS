@@ -1,7 +1,6 @@
-package TesteAPIQAOPS;
-
+package TesteAPIQAOPS.teste;
+import static io.restassured.RestAssured.*;
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
@@ -12,18 +11,23 @@ import org.junit.Test;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
-public class AppTest {
+public class UsuarioTest {
     @BeforeClass
     public static void setup(){
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+        baseURI = "https://reqres.in";
+        basePath = "/api";
     }
 
     @Test
     public void testListaMetadadosDoUsuario() {
+        given()
+          .params("page", 3).
         when()
-          .get("https://reqres.in/api/users?page=2").
+          .get("/users").
         then()
           .statusCode(HttpStatus.SC_OK)
+          .body("page", is(3))
           .body("data", is(notNullValue()));
     }
 
@@ -33,7 +37,7 @@ public class AppTest {
           .contentType(ContentType.JSON)
           .body("{\"name\":\"Fabio\", \"job\":\"Testador de Software\"}").
         when()
-          .post("https://reqres.in/api/users").
+          .post("/users").
         then()
           .statusCode(HttpStatus.SC_CREATED)
           .body("name", is("Fabio"));
