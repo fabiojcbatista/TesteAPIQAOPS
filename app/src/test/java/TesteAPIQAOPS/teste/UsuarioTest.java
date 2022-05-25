@@ -7,16 +7,18 @@ import org.apache.http.HttpStatus;
 import org.junit.Test;
 
 import TesteAPIQAOPS.dominio.Usuario;
-import io.restassured.http.ContentType;
 
 public class UsuarioTest extends BaseTest{
+
+  private static final String LISTA_USUARIO_ENDPOINT = "/users";
+  private static final String CRIA_USUARIO_ENDPOINT = "/users";
 
     @Test
     public void testListaMetadadosDoUsuario() {
       given()
         .params("page", 3).
       when()
-        .get("/users").
+        .get(LISTA_USUARIO_ENDPOINT).
       then()
         .statusCode(HttpStatus.SC_OK)
         .body("page", is(3))
@@ -30,7 +32,7 @@ public class UsuarioTest extends BaseTest{
       given()
         .body(usuario).
       when()
-        .post("/users").
+        .post(CRIA_USUARIO_ENDPOINT).
       then()
         .statusCode(HttpStatus.SC_CREATED)
         .body("name", is("Fabio"));

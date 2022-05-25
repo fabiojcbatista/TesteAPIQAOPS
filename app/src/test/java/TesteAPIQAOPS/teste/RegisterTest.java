@@ -9,6 +9,8 @@ import org.junit.Test;
 import TesteAPIQAOPS.dominio.Usuario;
 
 public class RegisterTest extends BaseTest{
+
+private static final String REGISTER_USUARIO = "/register";
  
  @Test
  public void testNaoRegistrarSemPassword() {
@@ -17,7 +19,7 @@ public class RegisterTest extends BaseTest{
   given()
     .body(usuario).
   when()
-    .post("/register").
+    .post(REGISTER_USUARIO).
   then()
     .statusCode(HttpStatus.SC_BAD_REQUEST)
     .body("error", is("Missing password"));
@@ -30,7 +32,7 @@ public class RegisterTest extends BaseTest{
   given()
     .body(user).
   when()
-    .post("/register").
+    .post(REGISTER_USUARIO).
   then()
     .statusCode(HttpStatus.SC_OK);
  }
