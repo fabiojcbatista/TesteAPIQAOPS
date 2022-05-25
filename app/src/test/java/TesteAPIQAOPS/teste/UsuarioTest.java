@@ -28,7 +28,6 @@ public class UsuarioTest extends BaseTest{
       Usuario usuario = new Usuario("Fabio", "Testador de Software", "fabiojcbweb@gmail.com");
       
       given()
-        .contentType(ContentType.JSON)
         .body(usuario).
       when()
         .post("/users").

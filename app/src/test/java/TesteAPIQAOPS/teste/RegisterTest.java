@@ -7,7 +7,6 @@ import org.apache.http.HttpStatus;
 import org.junit.Test;
 
 import TesteAPIQAOPS.dominio.Usuario;
-import io.restassured.http.ContentType;
 
 public class RegisterTest extends BaseTest{
  
@@ -16,9 +15,10 @@ public class RegisterTest extends BaseTest{
   Usuario usuario = new Usuario();
   usuario.setEmail("f123@gmail.com");
   given()
-    .contentType(ContentType.JSON)
-    .body(usuario).when()
-    .post("/register").then()
+    .body(usuario).
+  when()
+    .post("/register").
+  then()
     .statusCode(HttpStatus.SC_BAD_REQUEST)
     .body("error", is("Missing password"));
  }
@@ -28,9 +28,10 @@ public class RegisterTest extends BaseTest{
   Usuario user = new Usuario("Luiz", "f123@gmail.co", "123");
 
   given()
-    .contentType(ContentType.JSON)
-    .body(user).when()
-    .post("/register").then()
+    .body(user).
+  when()
+    .post("/register").
+  then()
     .statusCode(HttpStatus.SC_OK);
  }
 
