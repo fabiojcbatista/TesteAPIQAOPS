@@ -34,7 +34,7 @@ public class UsuarioTest {
 
     @Test
     public void testCriarUsuario() {
-      Usuario usuario = new Usuario("Fabio", "Testador de Software");
+      Usuario usuario = new Usuario("Fabio", "Testador de Software", "fabiojcbweb@gmail.com");
       
       given()
         .contentType(ContentType.JSON)
