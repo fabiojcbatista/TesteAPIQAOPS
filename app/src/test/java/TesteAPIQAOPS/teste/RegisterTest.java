@@ -1,26 +1,16 @@
 package TesteAPIQAOPS.teste;
 
-import static io.restassured.RestAssured.basePath;
-import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
 import org.apache.http.HttpStatus;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import TesteAPIQAOPS.dominio.Usuario;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
-public class RegisterTest {
- @BeforeClass
- public static void setup() {
-  RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-  baseURI = "https://reqres.in";
-  basePath = "/api";
- }
-
+public class RegisterTest extends BaseTest{
+ 
  @Test
  public void testNaoRegistrarSemPassword() {
   Usuario usuario = new Usuario();
