@@ -4,13 +4,24 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
 import org.apache.http.HttpStatus;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import TesteAPIQAOPS.dominio.Usuario;
+import io.restassured.RestAssured;
+import io.restassured.builder.ResponseSpecBuilder;
 
 public class RegisterTest extends BaseTest{
 
 private static final String REGISTER_USUARIO = "/register";
+private static final String LOGIN_USUARIO = "/login";
+
+@BeforeClass
+public static void setupRegister() {
+ RestAssured.responseSpecification = new ResponseSpecBuilder()
+ .expectStatusCode(HttpStatus.SC_BAD_REQUEST)
+ .build();
+}
  
  @Test
  public void testNaoRegistrarSemPassword() {
@@ -21,20 +32,18 @@ private static final String REGISTER_USUARIO = "/register";
   when()
     .post(REGISTER_USUARIO).
   then()
-    .statusCode(HttpStatus.SC_BAD_REQUEST)
     .body("error", is("Missing password"));
  }
 
  @Test
- public void testRegistrar() {
-  Usuario user = new Usuario("Luiz", "f123@gmail.co", "123");
-
+ public void testLogin() {
+  Usuario usuario = new Usuario();
+  usuario.setEmail("f123@gmail.com");
   given()
-    .body(user).
+    .body(usuario).
   when()
-    .post(REGISTER_USUARIO).
+    .post(LOGIN_USUARIO).
   then()
-    .statusCode(HttpStatus.SC_OK);
+    .body("error", is("Missing password"));
  }
-
 }

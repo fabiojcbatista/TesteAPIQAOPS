@@ -1,8 +1,17 @@
 package TesteAPIQAOPS.dominio;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Usuario {
 
+ @JsonAlias("first_name")
  private String name;
+
+ @JsonAlias("last_name")
+ private String last_name;
+ 
  private String job;
  private String email;
  private String password;
@@ -14,6 +23,10 @@ public class Usuario {
  }
 
  public Usuario() {
+ }
+
+ public String getLast_name() {
+  return last_name;
  }
 
  public String getName() {

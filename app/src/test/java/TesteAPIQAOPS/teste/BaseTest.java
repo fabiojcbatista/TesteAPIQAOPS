@@ -1,14 +1,14 @@
 package TesteAPIQAOPS.teste;
 
+import static io.restassured.RestAssured.basePath;
+import static io.restassured.RestAssured.baseURI;
+
 import org.junit.BeforeClass;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
-
-import static io.restassured.RestAssured.basePath;
-import static io.restassured.RestAssured.baseURI;
 
 public class BaseTest {
  @BeforeClass
@@ -20,7 +20,11 @@ public class BaseTest {
   RestAssured.requestSpecification = new RequestSpecBuilder()
   .setContentType(ContentType.JSON)
   .build();
-  
+
+  RestAssured.responseSpecification = new ResponseSpecBuilder()
+  .expectContentType(ContentType.JSON)
+  .build();
+
  }
 
 }
