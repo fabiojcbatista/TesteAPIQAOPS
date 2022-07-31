@@ -9,7 +9,7 @@
 
 ### Ajustes e melhorias
 
-O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
+atualizações serão voltadas nas seguintes tarefas:
 
 - [x] Criar before e after para testes
 - [x] Testar endpoint
